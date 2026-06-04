@@ -18,7 +18,7 @@ return new class extends Migration
         $table->string('modelo');
         $table->text('descripcion_falla');
         $table->date('fecha_ingreso');
-        $table->enum('estado', ['Ingresado', 'Reparando', 'Reparado', 'Entregado']);
+        $table->enum('estado', ['Ingresado', 'En reparación', 'Reparado', 'Entregado']);
         $table->timestamps();
     });
 }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reparacions');
+        Schema::dropIfExists('reparaciones');
     }
 };
