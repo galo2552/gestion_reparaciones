@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+@import 'forms.css';
+@import 'details.css';
 
 :root {
     --bg-primary: #f8fafc;
@@ -312,79 +314,7 @@ main {
     margin-bottom: 0.5rem;
 }
 
-/* Forms */
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-    color: var(--text-main);
-}
-
-.form-control {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    font-family: inherit;
-    font-size: 0.95rem;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--border-color);
-    background-color: #ffffff;
-    transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.form-control:focus {
-    outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
-}
-
-.error-msg {
-    color: #dc2626;
-    font-size: 0.85rem;
-    margin-top: 0.35rem;
-    display: block;
-    font-weight: 500;
-}
-
-.form-actions {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-    justify-content: flex-end;
-}
-
-/* Card */
-.detail-card {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.detail-row {
-    display: flex;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 1rem;
-}
-
-.detail-row:last-child {
-    border-bottom: none;
-}
-
-.detail-label {
-    width: 200px;
-    font-weight: 600;
-    color: var(--text-muted);
-    flex-shrink: 0;
-}
-
-.detail-value {
-    color: var(--text-main);
-    font-size: 1.05rem;
-}
+/* Los estilos de Formularios y Detalles se han movido a forms.css y details.css */
 
 /* Footer */
 footer {

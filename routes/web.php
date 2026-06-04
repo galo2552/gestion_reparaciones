@@ -8,4 +8,6 @@ Route::get('/', function () {
 });
 
 // Esto genera index, create, store, edit, update, show y destroy
-Route::resource('reparaciones', ReparacionController::class);
+Route::resource('reparaciones', ReparacionController::class)->parameters([
+    'reparaciones' => 'reparacion'
+]);
