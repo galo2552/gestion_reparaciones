@@ -31,7 +31,7 @@
 
         <div class="form-row">
             <div class="form-group">
-                <label for="password">Nueva Contraseña <span style="font-weight:normal; font-size:0.85em;">(dejá vacío para no cambiarla)</span></label>
+                <label for="password">Nueva Contraseña <span class="form-help">(dejá vacío para no cambiarla)</span></label>
                 <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" placeholder="••••••••">
                 @error('password')
                     <span class="error-msg">{{ $message }}</span>

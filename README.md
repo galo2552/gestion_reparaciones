@@ -1,58 +1,128 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Gestión de Reparaciones
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este proyecto es una aplicación web desarrollada con Laravel 13 para administrar reparaciones de equipos.
 
-## About Laravel
+## Descripción general
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+La aplicación permite:
+- Autenticación de usuarios.
+- Registrar, editar, ver y eliminar reparaciones.
+- Controlar el estado de cada reparación: `Ingresado`, `En reparación`, `Reparado` y `Entregado`.
+- Administración de usuarios solo para perfiles con rol `admin`.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Tecnologías usadas
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- PHP 8.3
+- Laravel 13
+- Blade templates
+- Vite + Tailwind CSS (configurado en `package.json`)
+- Base de datos relacional compatible con Laravel (MySQL, SQLite, PostgreSQL, etc.)
 
-## Learning Laravel
+## Funcionalidades principales
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Autenticación
+- Login de usuarios.
+- Logout.
+- Protege las rutas de reparaciones para usuarios autenticados.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Gestión de reparaciones
+- Listado de todas las reparaciones.
+- Creación de una nueva reparación.
+- Edición de reparaciones existentes.
+- Visualización de detalles de cada reparación.
+- Eliminación de reparaciones.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+### Gestión de usuarios (solo admin)
+- Listar usuarios.
+- Crear nuevos usuarios.
+- Editar usuarios existentes.
+- Eliminar usuarios.
+- El rol del usuario se almacena en el campo `rol` con valores `admin` o `usuario`.
 
-## Agentic Development
+## Estructura clave del proyecto
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+- `app/Models/Reparacion.php` - modelo Eloquent de reparaciones.
+- `app/Models/User.php` - modelo de usuarios con el campo `rol`.
+- `app/Http/Controllers/ReparacionController.php` - lógica CRUD de reparaciones.
+- `app/Http/Controllers/UsuarioController.php` - lógica CRUD de usuarios.
+- `app/Http/Controllers/AuthController.php` - login y logout.
+- `app/Http/Middleware/EsAdmin.php` - middleware que protege rutas solo para administradores.
+- `routes/web.php` - rutas públicas, rutas autenticadas y rutas de administración.
+- `database/migrations/2026_06_03_234539_create_reparacions_table.php` - tabla `reparaciones`.
+- `database/migrations/2026_06_08_170312_add_rol_to_users_table.php` - agrega campo `rol` a la tabla `users`.
+
+## Instalación local
+
+1. Copiar el archivo de entorno:
 
 ```bash
-composer require laravel/boost --dev
+cp .env.public .env
+```
+(O `copy .env.public .env` si estás en Windows CMD)
 
-php artisan boost:install
+2. Instalar dependencias de PHP:
+
+```bash
+composer install
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+3. Generar la clave de aplicación:
 
-## Contributing
+```bash
+php artisan key:generate
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+4. Configurar la conexión a la base de datos en `.env`.
 
-## Code of Conduct
+5. Ejecutar migraciones:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+php artisan migrate
+```
 
-## Security Vulnerabilities
+6. Instalar dependencias de Node:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+npm install
+```
 
-## License
+7. Compilar los assets:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+npm run build
+```
+
+## Uso
+
+Iniciar el servidor de desarrollo:
+
+```bash
+php artisan serve
+```
+
+Luego abrir en el navegador la URL mostrada, generalmente `http://127.0.0.1:8000`.
+
+## Rutas principales
+
+- `/login` - formulario de inicio de sesión.
+- `/logout` - cerrar sesión.
+- `/reparaciones` - listado y CRUD de reparaciones.
+- `/reparaciones/create` - crear reparación.
+- `/reparaciones/{reparacion}` - ver detalles de reparación.
+- `/reparaciones/{reparacion}/edit` - editar reparación.
+- `/usuarios` - listado de usuarios (solo admin).
+- `/usuarios/create` - crear usuario (solo admin).
+
+## Reglas de validación importantes
+
+- `nombre_cliente`, `marca`, `modelo`, `descripcion_falla`, `fecha_ingreso` y `estado` son campos obligatorios para reparaciones.
+- `estado` solo acepta los valores: `Ingresado`, `En reparación`, `Reparado`, `Entregado`.
+- `email` debe ser único al crear y actualizar usuarios.
+- Contraseña de usuario debe tener mínimo 8 caracteres y confirmarse.
+
+## Notas adicionales
+
+- El middleware `es.admin` bloquea el acceso a la gestión de usuarios si el usuario no tiene rol `admin`.
+- Los usuarios autenticados pueden acceder a las funciones de reparaciones.
+- El proyecto está preparado para entrega con una estructura clara de MVC y rutas protegidas.
+

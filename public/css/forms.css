@@ -42,6 +42,12 @@
     font-weight: 500;
 }
 
+.form-help {
+    font-weight: normal;
+    font-size: 0.85em;
+    color: var(--text-muted);
+}
+
 .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;

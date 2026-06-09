@@ -15,13 +15,13 @@
                 <li><a href="{{ route('reparaciones.index') }}">Listado de Reparaciones</a></li>
                 <li><a href="{{ route('reparaciones.create') }}">Nueva Reparación</a></li>
                 @if(auth()->check() && auth()->user()->rol === 'admin')
-                    <li><a href="{{ route('usuarios.index') }}" style="color: #6e6e6e; font-weight: bold;">Gestión de Usuarios</a></li>
+                    <li><a href="{{ route('usuarios.index') }}" class="nav-admin-link">Gestión de Usuarios</a></li>
                 @endif
                 @auth
                 <li>
-                    <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                    <form action="{{ route('logout') }}" method="POST" class="logout-form">
                         @csrf
-                        <button type="submit" style="background: none; border: none; color: #6e6e6e; text-decoration: underline; cursor: pointer; padding: 0; font-family: inherit; font-size: inherit;">
+                        <button type="submit" class="btn-logout">
                             Cerrar Sesión
                         </button>
                     </form>
