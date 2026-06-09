@@ -124,5 +124,4 @@ Luego abrir en el navegador la URL mostrada, generalmente `http://127.0.0.1:8000
 
 - El middleware `es.admin` bloquea el acceso a la gestión de usuarios si el usuario no tiene rol `admin`.
 - Los usuarios autenticados pueden acceder a las funciones de reparaciones.
-- El proyecto está preparado para entrega con una estructura clara de MVC y rutas protegidas.
 
