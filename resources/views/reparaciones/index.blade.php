@@ -18,6 +18,22 @@
         </div>
     @endif
 
+    <div class="filter-bar">
+        <form action="{{ route('reparaciones.index') }}" method="GET" class="filter-form">
+            <label for="filter_estado">Filtrar por Estado:</label>
+            <select name="estado" id="filter_estado" class="form-control filter-select" onchange="this.form.submit()">
+                <option value="">Todos los estados</option>
+                <option value="Ingresado" {{ request('estado') == 'Ingresado' ? 'selected' : '' }}>Ingresado</option>
+                <option value="En reparación" {{ request('estado') == 'En reparación' ? 'selected' : '' }}>En reparación</option>
+                <option value="Reparado" {{ request('estado') == 'Reparado' ? 'selected' : '' }}>Reparado</option>
+                <option value="Entregado" {{ request('estado') == 'Entregado' ? 'selected' : '' }}>Entregado</option>
+            </select>
+            @if (request('estado'))
+                <a href="{{ route('reparaciones.index') }}" class="btn btn-secondary btn-clear">Limpiar Filtro</a>
+            @endif
+        </form>
+    </div>
+
     <div class="table-responsive">
         @if ($reparaciones->isEmpty())
             <div class="empty-state">

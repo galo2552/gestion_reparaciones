@@ -7,9 +7,16 @@ use Illuminate\Http\Request;
 
 class ReparacionController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $reparaciones = Reparacion::all();
+        $query = Reparacion::query();
+
+        if ($request->filled('estado') && in_array($request->estado, ['Ingresado', 'En reparación', 'Reparado', 'Entregado'])) {
+            $query->where('estado', $request->estado);
+        }
+
+        // Ordenar por fecha de ingreso, más recientes primero
+        $reparaciones = $query->orderBy('fecha_ingreso', 'desc')->get();
         
         return view('reparaciones.index', compact('reparaciones'));
     }
